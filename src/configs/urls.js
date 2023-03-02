@@ -6,8 +6,7 @@ const baseURL = 'https://api.openweathermap.org/data/2.5';
 
 const urls = {
     weather:'/weather?units=metric&lang=ru&q=',
-    hourly_forecast:'/forecast/hourly?',
-    daily_forecast:'/forecast/daily?',
+    getForecast: '/forecast?units=metric&lang=ru&q=',
     getIcon: 'http://openweathermap.org/img/w/'
 
 }

@@ -4,7 +4,14 @@ import css from './CardStyle.module.css'
 const CurrentWeatherCard = ({weatherArr, data}) => {
 
     const {description, icon} = weatherArr;
-    const {main, wind, clouds, name, sys} = data;
+    const {main, wind, clouds, name, sys, dt} = data;
+
+
+    const date1 = new Date(dt * 1000);
+
+    const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+    const dayNames = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+    const formattedDate = `${dayNames[date1.getDay()]}, ${date1.getDate()} ${monthNames[date1.getMonth()]} ${date1.getFullYear()} ${date1.getHours()}:${date1.getMinutes().toString().padStart(2, '0')}`;
 
 
 
@@ -12,7 +19,11 @@ const CurrentWeatherCard = ({weatherArr, data}) => {
     return (
         <div className={css.Card}>
 
+
             <div className='Name'><h2>{name}</h2></div>
+            <div className='date'>
+                <p>Сейчас: {formattedDate}</p>
+            </div>
             <div className='state'>{description} <img src={`${urls.getIcon}${icon}.png`} alt="icon"/></div>
             <div className='temp'>
                 <p>{Math.round(main.temp)} ℃</p>
@@ -27,6 +38,7 @@ const CurrentWeatherCard = ({weatherArr, data}) => {
 
 
 
+
         </div>
     );
 };
@@ -34,46 +46,3 @@ const CurrentWeatherCard = ({weatherArr, data}) => {
 export {CurrentWeatherCard};
 
 
-// "coord": {
-//     "lon": 31.8869,
-//         "lat": 51.048
-// },
-// "weather": [
-//     {
-//         "id": 800,
-//         "main": "Clear",
-//         "description": "ясно",
-//         "icon": "01n"
-//     }
-// ],
-//     "base": "stations",
-//     "main": {
-//     "temp": -0.56,
-//         "feels_like": -5.84,
-//         "temp_min": -0.56,
-//         "temp_max": -0.56,
-//         "pressure": 1024,
-//         "humidity": 65,
-//         "sea_level": 1024,
-//         "grnd_level": 1008
-// },
-// "visibility": 10000,
-//     "wind": {
-//     "speed": 5.4,
-//         "deg": 275,
-//         "gust": 12.1
-// },
-// "clouds": {
-//     "all": 4
-// },
-// "dt": 1677607719,
-//     "sys": {
-//     "country": "UA",
-//         "sunrise": 1677559229,
-//         "sunset": 1677598202
-// },
-// "timezone": 7200,
-//     "id": 699942,
-//     "name": "Нежин",
-//     "cod": 200
-// }
